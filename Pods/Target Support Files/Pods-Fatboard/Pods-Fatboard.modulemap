@@ -1,0 +1,6 @@
+framework module Pods_Fatboard {
+  umbrella header "Pods-Fatboard-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--MainScreen-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController title="MainScreen" id="BYZ-38-t0r" customClass="ViewController" customModule="Fatboard" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lvj-M2-SOJ">
+                                <rect key="frame" x="117" y="110" width="86" height="74"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="sliderIcon.png"/>
+                                <connections>
+                                    <action selector="speedSliderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QVj-hy-GU1"/>
+                                    <segue destination="dkH-rJ-hLo" kind="presentation" identifier="go_to_speed_slider" modalTransitionStyle="flipHorizontal" id="0KD-mf-HgO">
+                                        <segue key="commit" inheritsFrom="parent" id="41J-Ob-4A6"/>
+                                        <segue key="preview" inheritsFrom="commit" id="JgK-Eu-OKI"/>
+                                    </segue>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EBe-es-gjO">
+                                <rect key="frame" x="99" y="336" width="122" height="107"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="settingsIcon.png"/>
+                                <connections>
+                                    <action selector="settingsButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RsU-cT-N7C"/>
+                                    <segue destination="2La-Uv-ljY" kind="presentation" identifier="go_to_settings" modalTransitionStyle="crossDissolve" id="fbE-2o-hDz"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.98515802620000004" green="0.92648333309999997" blue="0.36649093030000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="116.25" y="117.25352112676056"/>
+        </scene>
+        <!--Speed View Controller-->
+        <scene sceneID="T0e-Cf-y93">
+            <objects>
+                <viewController id="dkH-rJ-hLo" customClass="SpeedViewController" customModule="Fatboard" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Bcw-rk-RKJ" customClass="SpeedV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1500" minValue="1000" maxValue="2000" translatesAutoresizingMaskIntoConstraints="NO" id="YnY-dd-7fO" customClass="SexySlider" customModule="Fatboard" customModuleProvider="target">
+                                <rect key="frame" x="-49" y="305" width="418" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="minimumTrackTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="thumbImage" value="sliderThumb.png"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="changeValue:" destination="dkH-rJ-hLo" eventType="valueChanged" id="Mih-M7-uwI"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C0I-qk-WRh">
+                                <rect key="frame" x="107" y="47" width="106" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Label">
+                                        <attributes>
+                                            <font key="NSFont" size="28" name="LemonMilk"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.98515802620000004" green="0.92648333309999997" blue="0.36649093030000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
+                        <viewLayoutGuide key="safeArea" id="g3I-z4-CRj"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Ze1-HL-UzM" appends="YES" id="VFQ-zf-Y3a"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="speedLevel" destination="C0I-qk-WRh" id="jQW-U3-vaW"/>
+                        <outlet property="speedSlider" destination="YnY-dd-7fO" id="qkv-J9-elG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nif-PQ-f7e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="Ze1-HL-UzM">
+                    <connections>
+                        <action selector="goBackHome:" destination="dkH-rJ-hLo" id="TzT-LZ-Kag"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" modalTransitionStyle="crossDissolve" id="Az5-YZ-AbM"/>
+                    </connections>
+                </swipeGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="982.5" y="486.97183098591552"/>
+        </scene>
+        <!--settings-->
+        <scene sceneID="Zu9-Lp-2uZ">
+            <objects>
+                <viewController title="settings" id="2La-Uv-ljY" customClass="SettingsViewController" customModule="Fatboard" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JeF-70-VNe">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4h4-jn-5Fb">
+                                <rect key="frame" x="139" y="269" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="0gD-J4-Emy"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="omZ-Og-63V">
+                                <rect key="frame" x="108" y="73" width="104" height="83"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="neutral.png"/>
+                                <connections>
+                                    <action selector="connectToWifi:" destination="2La-Uv-ljY" eventType="touchUpInside" id="cCx-Oj-5qY"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.98515802620000004" green="0.92648333309999997" blue="0.36649093030000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="PAB-cu-cPp"/>
+                    </view>
+                    <connections>
+                        <outlet property="wifiStatusButton" destination="omZ-Og-63V" id="rKa-n2-56w"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c1j-4v-hmH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="982.5" y="-255.63380281690141"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="neutral.png" width="502" height="379"/>
+        <image name="settingsIcon.png" width="98" height="82"/>
+        <image name="sliderIcon.png" width="98" height="85"/>
+        <image name="sliderThumb.png" width="47" height="56"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="0KD-mf-HgO"/>
+        <segue reference="Az5-YZ-AbM"/>
+    </inferredMetricsTieBreakers>
+</document>
