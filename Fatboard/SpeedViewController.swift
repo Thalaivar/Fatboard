@@ -23,6 +23,13 @@ extension Numeric {
 
 class Board {
     var speedValue:Int = 1000
+    /* STATUS           ---    VALUE
+     not connected      ---      0
+     wifi connect       ---      1
+     connected          ---      2
+     board running      ---      3
+     board stopped      ---      4
+     */
     var status = 0
 
     let port = Int32(345)
@@ -42,8 +49,28 @@ class Board {
     }
     
     func checkConnection(){
-        if self.status == 1 {
+        self.status = 1
+        
+        if(self.status == 1) {
                 try! self.boardWiFi?.write(from: self.connectMessage.data)
+                var message = try! self.boardWiFi?.readString()
+                var tries = 0;
+            while(message != "V"){
+                message = try! self.boardWiFi?.readString()
+                tries += 1
+                
+                if(tries > 1000){
+                    self.status = 1
+                    break
+                }
+            }
+                self.status = 2
+        }
+    }
+    
+    func sendSpeedValue(value: Int16){
+        if(self.status == 2) {
+            try! self.boardWiFi?.write(from: value.data)
         }
     }
 }
@@ -72,6 +99,7 @@ class SpeedViewController: UIViewController {
 
     @IBAction func changeValue(_ sender: UISlider) {
         speedLevel.text = String(Int(speedSlider.value))
+        board.sendSpeedValue(value: Int16(speedSlider.value))
     }
    
     

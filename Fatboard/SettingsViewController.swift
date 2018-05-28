@@ -38,10 +38,16 @@ class SettingsViewController: UIViewController {
             }
             
             if board.status == 1{
-                sender.setImage(#imageLiteral(resourceName: "connected.png"), for: .normal)
                 board.checkConnection()
+                if board.status == 2{
+                    sender.setImage(#imageLiteral(resourceName: "connected.png"), for: .normal)
+                }
             }
             
+            if board.status == 2{
+                sender.setImage(#imageLiteral(resourceName: "connected.png"), for: .normal)
+            }
+                
             else{
                 sender.setImage(#imageLiteral(resourceName: "disconnected.png"), for: .normal)
             }

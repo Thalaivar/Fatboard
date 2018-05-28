@@ -25,6 +25,7 @@ typedef enum conn_stat {
 
 conn_status connection = NO_CONN;
 bool hotspot  = false;
+int16_t speedValue = 1000;
 
 WiFiServer board(port);
 WiFiClient phone;
@@ -43,6 +44,19 @@ void setup() {
 void loop() {
   while(connection != CONN_VER) checkConnection();
 
+  while(connection == CONN_VER){
+    if(!phone.connected()) killBoard();
+    else{
+      int msg_size = phone.available();
+      yield();
+      if(msg_size > 0){
+        byte value_msg[2];
+        msg_size = phone.readBytes(value_msg, msg_size);
+        speedValue = (value_msg[1] << 8) | value_msg[0];
+        Serial.println(speedValue);
+      }
+    }
+  }
 }
 
 void setupWiFi() {
@@ -63,7 +77,10 @@ void checkConnection() {
           msg_size = phone.readBytes(conn_msg_raw, msg_size);
           yield();
           int16_t conn_msg = (conn_msg_raw[1] << 8) | conn_msg_raw[0];
-          if(conn_msg == CONN_MSG) Serial.println("HI!");
+          if(conn_msg == CONN_MSG){
+            connection = CONN_VER;
+            phone.write("V");
+          }
           phone.flush();
         }
       }
@@ -71,4 +88,9 @@ void checkConnection() {
   }
 }
 
+void killBoard(){
+  connection = NO_CONN;
+  speedValue = 1000;
+  Serial.println("KILL");
+}
 
